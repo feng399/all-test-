@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bing-like Page</title>
+    <style>
+        body {
+            background-image: url('bing.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        
+        #navigation {
+            position: absolute;
+            top: 19px;
+            left:180px;
+            width: 100%;
+            padding: 10px;
+            background-color: transparent;
+            text-align: left;
+            z-index: 1;
+        }
+        
+        #navigation a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #fff;
+            font-family: "Segoe UI", sans-serif;
+            font-size: 18px;
+        }
+        
+        #navigation a:hover {
+            color: #ddd;
+        }
+        
+        #search {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+        }
+        
+        #search input[type="text"] {
+            width: 500px;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+        }
+        
+        #search input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+        
+        #search input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        #background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+        
+        #background-overlay img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        #bing-logo {
+            position: absolute;
+            top: 0px;
+            left: 15px;
+            width: 150px;
+            height: 80px;
+            z-index: 0;
+        }
+        
+        #more-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            background-color: #f0f0f0;
+            padding: 10px;
+            z-index: 1;
+        }
+        
+        #more-link:hover + #more-dropdown,
+        #more-dropdown:hover {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 390px;
+        }
+        
+        #more-dropdown a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navigation">
+      <a href="#">Web</a> |
+      <a href="#">Images</a> |
+      <a href="#">Videos</a> |
+      <a href="#">Maps</a> |
+      <a href="#">News</a> |
+      <a id="more-link" href="#">More</a>
+      <div id="more-dropdown">
+          <a href="#">Songs</a>
+      </div>
+  </div>
+  
+  <div id="search">
+      <form>
+          <input type="text" placeholder="Enter your search term">
+          <br><br>
+          <input type="submit" value="Search">
+      </form>
+  </div>
+  
+  <div id="background-overlay">
+      <img src="bing.jpg" alt="Background Image">
+  </div>
+  <img id="bing-logo" src="IMG_1173.PNG" alt="Bing Logo">
+</body>
+</html>
