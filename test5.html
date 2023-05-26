@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>cumulative from 1 after page loaded</title>
+
+    <style>
+        div {
+            text-align: center;
+            font-size: 100px;
+            padding: 100px;
+        }
+        
+        button {
+            display: block;
+            margin: 50px auto;
+            width: 500px;
+            height: 100px;
+            font-size: 30px;
+        }
+        
+        span {
+            color: crimson;
+        }
+    </style>
+
+</head>
+
+<body>
+    <button onclick="toggleTimer()">计时开始/暂停</button>
+    <div id="demo"></div>
+
+    <script>
+        var oBody = document.getElementById("demo");
+        var i = 0;
+        var timerId = null;
+
+        function toggleTimer() {
+            if (timerId) {
+                // 计时器正在运行，暂停计时
+                clearInterval(timerId);
+                timerId = null;
+            } else {
+                // 计时器已暂停，继续计时
+                timerId = setInterval(updateNum, 1000);
+            }
+        }
+
+        function updateNum() {
+            var j = i++;
+            oBody.innerHTML = "已经过时间：" + "<span>" + j + "</span>" + " 秒";
+        }
+    </script>
+</body>
+
+</html>
