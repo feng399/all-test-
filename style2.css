@@ -1,0 +1,329 @@
+body.is-preload {
+    overflow-x: hidden;
+  }
+  
+  body{
+    color: #888;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+  
+  a {
+    color: #888;
+    text-decoration: none;
+  }
+
+  #wrapper {
+    padding-left: 250px;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #main {
+    transition: all 0.5s ease;
+    background-color: #f8f8f8;
+    min-height: 100vh;
+  }
+  
+  .inner {
+    padding: 32px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  #header {
+    padding: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+  }
+  #header .icons {
+    display: block;
+    list-style: none;
+    padding: 0;
+  }
+  
+  #header .icons li {
+    display: inline; /* 将每个图标元素设置为内联块级元素 */
+    margin-left: 0px;
+    margin-right: 0px; /* 调整每个图标之间的水平间距 */
+    margin-bottom: 10px; /* 调整每个图标与标题之间的垂直间距 */
+  }
+
+  #header .icons li:last-child {
+    margin-right: 0; /* 最后一个图标去除右边距，以避免间距过多 */
+  }
+  
+  .icon-twitter::before {
+    font-family: "Font Awesome 5 Brands"; /* 设置字体库为Font Awesome 5 Brands */
+    content: "\f099"; /* 设置对应图标的Unicode字符编码 */
+    font-size: 30px;
+    color: #1DA1F2;
+  }
+  
+  .icon-facebook::before {
+    font-family: "Font Awesome 5 Brands"; /* 设置字体库为Font Awesome 5 Brands */
+    content: "\f09a"; /* 设置对应图标的Unicode字符编码 */
+    font-size: 30px;
+    color: #1877f2;
+  }
+  
+  .icon-snapchat::before {
+    font-family: "Font Awesome 5 Brands"; /* 设置字体库为Font Awesome 5 Brands */
+    content: "\f2ac"; /* 设置对应图标的Unicode字符编码 */
+    font-size: 30px;
+    color: #fffc00;
+  }
+  
+  .icon-instagram::before {
+    font-family: "Font Awesome 5 Brands"; /* 设置字体库为Font Awesome 5 Brands */
+    content: "\f16d"; /* 设置对应图标的Unicode字符编码 */
+    font-size: 30px;
+    color: #E4405F;
+  }
+  
+  #header .logo {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  #banner {
+    position: relative;
+    padding: 64px 0;
+    background-image: url(images/pic10.jpg);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  #banner h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 75px;
+    margin-bottom: 16px;
+  }
+  
+  #banner p {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 36px;
+    margin-bottom: 30px;
+  }
+  
+  #banner .actions {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #banner .actions .button {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  #banner .actions .button:hover {
+    background-color: #555;
+  }
+  
+  section {
+    padding: 64px 0;
+  }
+  
+  section header.major {
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  
+  section header.major h2 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .features article {
+    flex-basis: calc(50% - 16px);
+    margin-bottom: 2em;
+  }
+  
+  .features article span {
+    display: block;
+    margin-bottom: 16px;
+  }
+  
+  .features article .content {
+    text-align: center;
+  }
+  
+  .features article h3 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .features article p {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .posts article {
+    flex-basis: calc(50% - 16px);
+    margin-bottom: 32px;
+  }
+  
+  .posts article .image {
+    display: block;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  
+  .posts article .image img {
+    width: 100%;
+    transition: transform 0.2s ease;
+  }
+  
+  .posts article .image:hover img {
+    transform: scale(1.1);
+  }
+  
+  
+  .posts article .actions {
+    text-align: center;
+  }
+  
+  .posts article .actions .button {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 16px 24px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .posts article .actions .button:hover {
+    background-color: #555;
+  }
+  
+  #sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 350px;
+    transition: all 0.5s ease;
+    overflow-y: auto;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  #sidebar::-webkit-scrollbar {
+    width: 8px;
+    background-color: #333;
+  }
+  
+  #sidebar::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  #sidebar .inner {
+    padding: 32px;
+  }
+  
+  #sidebar #search input[type="text"] {
+    font-size: 20px;
+    font-weight: 300;
+    padding: 16px;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 16px
+  }
+  
+  #sidebar #search input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #888;
+  }
+  
+  #sidebar nav h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 20px;
+    margin-bottom: 16px;
+  }
+  
+  #sidebar nav ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  #sidebar nav ul li a {
+    display: block;
+    padding: 16px 0;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s ease;
+  }
+  
+  #sidebar nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  #footer {
+    padding: 32px 0;
+    text-align: center;
+    background-color: #333;
+  }
+  
+  #footer p {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  
+  #footer ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 8px;
+  }
+  
+  #footer ul li {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  #footer ul li a {
+    color: #888;
+    transition: color 0.2s ease;
+  }
+  
+  #footer ul li a:hover {
+    color: #fff;
+  }
+  

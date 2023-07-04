@@ -1,0 +1,296 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+}
+
+
+html {
+	box-sizing: border-box;
+}
+
+*, *::before, *::after {
+	box-sizing: inherit;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+	color: #333;
+}
+
+a {
+	color: #555;
+	text-decoration: none;
+}
+
+#wrapper {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 32px;
+	max-width: 1200px;
+	background-color: rgb(249, 237, 214);
+	padding: 32px;
+	margin-left: 320px;
+}
+
+#header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px 0;
+}
+
+#header .logo {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#header ul.icons {
+	display: flex;
+	align-items: center;
+}
+
+#header ul.icons li {
+	margin-left: 16px;
+}
+.icon-twitter::before {
+    font-family: "Font Awesome 5 Brands"; /* 设置字体库为Font Awesome 5 Brands */
+    content: "\f099"; /* 设置对应图标的Unicode字符编码 */
+    font-size: 30px;
+    color: #1DA1F2;
+  }
+  
+  .icon-facebook::before {
+    font-family: "Font Awesome 5 Brands"; /* 设置字体库为Font Awesome 5 Brands */
+    content: "\f09a"; /* 设置对应图标的Unicode字符编码 */
+    font-size: 30px;
+    color: #1877f2;
+  }
+  
+  .icon-snapchat::before {
+    font-family: "Font Awesome 5 Brands"; /* 设置字体库为Font Awesome 5 Brands */
+    content: "\f2ac"; /* 设置对应图标的Unicode字符编码 */
+    font-size: 30px;
+    color: #fffc00;
+  }
+  
+  .icon-instagram::before {
+    font-family: "Font Awesome 5 Brands"; /* 设置字体库为Font Awesome 5 Brands */
+    content: "\f16d"; /* 设置对应图标的Unicode字符编码 */
+    font-size: 30px;
+    color: #E4405F;
+  }
+
+#banner {
+	background-color: white;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 32px;
+	align-items: center;
+	padding: 32px;
+	background-color: #f7f7f7;
+}
+
+#banner .content {
+	max-width: 400px;
+}
+
+#banner h1 {
+	font-size: 40px;
+	margin-bottom: 16px;
+}
+
+#banner p {
+	margin-bottom: 32px;
+}
+
+#banner .button {
+	background-color: #555;
+	color: #fff;
+	padding: 16px 32px;
+	border-radius: 4px;
+}
+
+#banner .button:hover {
+	background-color: #333;
+	cursor: pointer;
+}
+
+#banner .image img {
+	width: 100%;
+	border-radius: 4px;
+}
+
+section {
+	margin-bottom: 64px;
+}
+
+section header.major {
+	margin-bottom: 30px;
+	font-weight: bold;
+}
+
+section header.major h2 {
+	font-size: 30px;
+}
+
+.features {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-gap: 32px;
+}
+
+.features article {
+	display: flex;
+	align-items: center;
+}
+
+.features span {
+	font-size: 32px;
+	margin-right: 16px;
+}
+
+.features h3 {
+	font-size: 24px;
+	margin-bottom: 8px;
+}
+
+.features p {
+	margin-bottom: 16px;
+}
+
+.posts {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-gap: 32px;
+}
+
+.posts .button:hover {
+	background-color: #333;
+	cursor: pointer;
+}
+
+.posts article {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 32px;
+	background-color: #f7f7f7;
+	border-radius: 4px;
+}
+
+.posts h3 {
+	font-size: 24px;
+	margin-bottom: 16px;
+	color: #333;
+}
+
+.posts p {
+	margin-bottom: 16px;
+	color: #555;
+}
+
+.posts .button {
+	background-color: #555;
+	color: #fff;
+	padding: 12px 24px;
+	border-radius: 4px;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+
+.posts article img {
+	width: 100%;
+	height: auto;
+	border-radius: 4px;
+	margin-bottom: 1rem;
+}
+
+#sidebar {
+	font-family: Georgia, serif;
+	background-color: orange;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 320px;
+	height: 100vh;
+	padding: 2rem;
+}
+
+#sidebar #search input[type="text"] {
+	width: 100%;
+	padding: 0.8rem;
+	border: none;
+	border-radius: 4px;
+
+}
+
+#sidebar #menu ul {
+	font-weight: bold;
+	list-style: none;
+	padding: 0;
+	margin: 10px;
+}
+
+#sidebar #menu ul li {
+	margin-bottom: 0.5rem;
+}
+
+#sidebar #menu ul li a {
+	color: #555;
+	text-decoration: none;
+}
+
+#sidebar #menu ul li a:hover {
+	color: #333;
+}
+
+#sidebar  h2 {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#sidebar p {
+	margin-bottom: 16px;
+}
+
+#sidebar .contact {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#sidebar .contact li {
+	margin-bottom: 5px;
+}
+
+#sidebar .contact li a {
+	color: #555;
+	text-decoration: none;
+}
+
+#sidebar .contact li a:hover {
+	color: #333;
+}
+
+#footer {
+	background-color: #555;
+	padding: 5px;
+	margin-top:5px;
+	text-align: center;
+	color: #ffffff;
+	font-size: 2px;
+}
+
+#footer a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: #ccc;
+}
