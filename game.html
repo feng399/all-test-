@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>猫和老鼠游戏</title>
+  <style>
+    body {
+      background-color: #F2F2F2;
+      font-family: "Arial", sans-serif;
+    }
+
+    #game-container {
+      position: relative;
+      width: 800px;
+      height: 600px;
+      margin: 20px auto;
+      border: 6px solid #444;
+      border-radius: 10px;
+      background-color: #EEE;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      background-image: url("background-pattern.png");
+    }
+    #background-container {
+  position: relative;
+  width: 100%;
+  height: 120%;
+}
+
+#background-image {
+  position: absolute;
+  top: -20px;
+  left: -8px;
+  width: 101%;
+  height: 119%;
+  z-index: -1;
+}
+
+    #jerry {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      background-image: url("jerry.png");
+      background-size: cover;
+      top: 0;
+      left: 0;
+      transition: all 0.2s ease-in-out;
+      animation: pulse 2s infinite;
+    }
+
+    #jerry:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .tom {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      background-image: url("tom.png");
+      background-size: cover;
+    }
+
+    .cheese {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-image: url("cheese.png");
+      background-size: cover;
+    }
+
+    #score {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 10px;
+      color: #555;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    
+  </style>
+  <audio id="tom-audio">
+    <source src="1.mp3" type="audio/mpeg">
+  </audio>
+  
+  <audio id="cheese-audio">
+    <source src="2.mp3" type="audio/mpeg">
+  </audio>
+  
+</head>
+<body>
+  <div id="background-container">
+    <img src="back.png" id="background-image" alt="Background Image">
+  <div id="game-container">
+    <div id="jerry"></div>
+    <div id="tom-container"></div>
+    <div id="cheese-container"></div>
+    <div id="score">得分: 0</div>
+  </div>
+
+  <script>
+    var jerry;
+    var tomContainer;
+    var cheeseContainer;
+    var scoreDisplay;
+    var score = 0;
+
+    var gameWidth = 800;
+    var gameHeight = 600;
+
+    var jerryWidth = 50;
+    var jerryHeight = 50;
+
+    var tomWidth = 30;
+    var tomHeight = 30;
+
+    var cheeseWidth = 30;
+    var cheeseHeight = 30;
+
+    var maxToms = 5; // 将maxToms的数量减少为5
+    var maxCheese = 5; // 将maxCheese的数量减少为5
+
+    var jerryPosition = { x: 0, y: 0 };
+
+    function createTom() {
+      var tom = document.createElement("div");
+      tom.className = "tom";
+      var marginX = getRandomMargin(tomWidth, gameWidth);
+      var marginY = getRandomMargin(tomHeight, gameHeight);
+
+      // 检查与"jerry"重叠的位置
+      var jerryRect = jerry.getBoundingClientRect();
+      if (
+        marginX < jerryRect.right &&
+        marginX + tomWidth > jerryRect.left &&
+        marginY < jerryRect.bottom &&
+        marginY + tomHeight > jerryRect.top
+      ) {
+        return createTom(); // 重新生成位置
+      }
+
+      // 检查与其他"tom"重叠的位置
+      var toms = document.getElementsByClassName("tom");
+      for (var i = 0; i < toms.length; i++) {
+        var tomRect = toms[i].getBoundingClientRect();
+        if (
+          marginX < tomRect.right &&
+          marginX + tomWidth > tomRect.left &&
+          marginY < tomRect.bottom &&
+          marginY + tomHeight > tomRect.top
+        ) {
+          return createTom(); // 重新生成位置
+        }
+      }
+
+      tom.style.left = marginX + "px";
+      tom.style.top = marginY + "px";
+      tomContainer.appendChild(tom);
+    }
+
+    function createCheese() {
+      var cheese = document.createElement("div");
+      cheese.className = "cheese";
+      var marginX = getRandomMargin(cheeseWidth, gameWidth);
+      var marginY = getRandomMargin(cheeseHeight, gameHeight);
+
+      // 检查与"jerry"重叠的位置
+      var jerryRect = jerry.getBoundingClientRect();
+      if (
+        marginX < jerryRect.right &&
+        marginX + cheeseWidth > jerryRect.left &&
+        marginY < jerryRect.bottom &&
+        marginY + cheeseHeight > jerryRect.top
+      ) {
+        return createCheese(); // 重新生成位置
+      }
+
+      // 检查与其他"tom"重叠的位置
+      var toms = document.getElementsByClassName("tom");
+      for (var i = 0; i < toms.length; i++) {
+        var tomRect = toms[i].getBoundingClientRect();
+        if (
+          marginX < tomRect.right &&
+          marginX + cheeseWidth > tomRect.left &&
+          marginY < tomRect.bottom &&
+          marginY + cheeseHeight > tomRect.top
+        ) {
+          return createCheese(); // 重新生成位置
+        }
+      }
+
+      // 检查与其他"cheese"重叠的位置
+      var cheeses = document.getElementsByClassName("cheese");
+      for (var j = 0; j < cheeses.length; j++) {
+        var cheeseRect = cheeses[j].getBoundingClientRect();
+        if (
+          marginX < cheeseRect.right &&
+          marginX + cheeseWidth > cheeseRect.left &&
+          marginY < cheeseRect.bottom &&
+          marginY + cheeseHeight > cheeseRect.top
+        ) {
+          return createCheese(); // 重新生成位置
+        }
+      }
+
+      cheese.style.left = marginX + "px";
+      cheese.style.top = marginY + "px";
+      cheeseContainer.appendChild(cheese);
+    }
+
+    function getRandomMargin(itemSize, containerSize) {
+      var minMargin = 10;
+      var maxMarginX = containerSize - itemSize - minMargin;
+      var maxMarginY = containerSize - itemSize - minMargin;
+      var marginX = Math.floor(Math.random() * maxMarginX) + minMargin;
+      var marginY = Math.floor(Math.random() * maxMarginY) + minMargin;
+
+      return marginX;
+    }
+
+    function updateScore(change) {
+      score += change;
+      scoreDisplay.textContent = "得分: " + score;
+    }
+
+    function checkCollision(element1, element2) {
+      var rect1 = element1.getBoundingClientRect();
+      var rect2 = element2.getBoundingClientRect();
+
+      return !(rect1.right < rect2.left ||
+               rect1.left > rect2.right ||
+               rect1.bottom < rect2.top ||
+               rect1.top > rect2.bottom);
+    }
+    
+
+    function gameLoop() {
+      var toms = document.getElementsByClassName("tom");
+      var cheeses = document.getElementsByClassName("cheese");
+
+      function playTomAudio() {
+  var tomAudio = document.getElementById("tom-audio");
+  tomAudio.currentTime = 0; // 重新播放音频
+  tomAudio.play();
+}
+
+function playCheeseAudio() {
+  var cheeseAudio = document.getElementById("cheese-audio");
+  cheeseAudio.currentTime = 0; // 重新播放音频
+  cheeseAudio.play();
+}
+
+// 在碰撞检测的地方调用对应的音频播放函数
+for (var i = toms.length - 1; i >= 0; i--) {
+  if (checkCollision(jerry, toms[i])) {
+    updateScore(-50);
+    tomContainer.removeChild(toms[i]);
+    createTom();
+    playTomAudio(); // 播放尖叫声音
+  }
+}
+
+for (var j = cheeses.length - 1; j >= 0; j--) {
+  if (checkCollision(jerry, cheeses[j])) {
+    updateScore(50);
+    cheeseContainer.removeChild(cheeses[j]);
+    createCheese();
+    playCheeseAudio(); // 播放开心声音
+  }
+}
+
+
+
+      if (toms.length < maxToms) {
+        createTom();
+      }
+
+      if (cheeses.length < maxCheese) {
+        createCheese();
+      }
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    document.addEventListener("keydown", function(event) {
+  var key = event.keyCode;
+  var jerryRect = jerry.getBoundingClientRect();
+
+  var increment = 20; // 调整Jerry的移动速度
+
+  var newX = jerryPosition.x;
+  var newY = jerryPosition.y;
+
+  if (key === 37 && jerryPosition.x > 0) { // 左箭头键
+    newX -= increment;
+  } else if (key === 38 && jerryPosition.y > 0) { // 上箭头键
+    newY -= increment;
+  } else if (key === 39 && jerryPosition.x < gameWidth - jerryWidth) { // 右箭头键
+    newX += increment;
+  } else if (key === 40 && jerryPosition.y < gameHeight - jerryHeight) { // 下箭头键
+    newY += increment;
+  }
+
+  jerry.style.left = newX + "px";
+  jerry.style.top = newY + "px";
+
+  jerryPosition.x = newX;
+  jerryPosition.y = newY;
+});
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+      jerry = document.getElementById("jerry");
+      tomContainer = document.getElementById("tom-container");
+      cheeseContainer = document.getElementById("cheese-container");
+      scoreDisplay = document.getElementById("score");
+
+      createTom();
+      createCheese();
+      gameLoop();
+    });
+  </script>
+</body>
+</html>
